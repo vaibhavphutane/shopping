@@ -13,4 +13,5 @@ export const environment = {
     storageBucket: "shopping-7861c.appspot.com",
     messagingSenderId: "369521090147"
   }
+ 
 };

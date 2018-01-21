@@ -26,9 +26,12 @@ import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductsService } from './products.service';
+import { ProductFilterComponent } from './product/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 const APP_ROUTES: Routes = [
-  {path: '', component: HomeComponent, },
+  {path: '', component: ProductComponent },
   {path: 'shopping-cart',component: ShoppingCartComponent},
   {path: 'product',component: ProductComponent},
   {path: 'login',component: LoginComponent},
@@ -71,7 +74,9 @@ const APP_ROUTES: Routes = [
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -81,8 +86,7 @@ const APP_ROUTES: Routes = [
     RouterModule.forRoot(APP_ROUTES),
     NgbModule.forRoot(),
     FormsModule,
-    CustomFormsModule
-    
+    CustomFormsModule    
   ],
   providers: [
     AuthService,
@@ -90,7 +94,8 @@ const APP_ROUTES: Routes = [
    UserService,
    AdminAuthGuardService,
    CategoryService,
-   ProductsService
+   ProductsService,
+   ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
