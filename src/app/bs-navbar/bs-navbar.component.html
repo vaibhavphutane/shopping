@@ -8,7 +8,11 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink= "/shopping-cart">Shopping cart</a>
+            <a class="nav-link" routerLink= "/shopping-cart">Shopping cart
+              <span *ngIf="cart$ | async as cart "class="badge badge badge-warning badge-pill">
+                {{cart.totalItemCount}}</span>
+            </a>
+            
           </li>
           <ng-template #anonymousUser>
             <li  class="nav-item">
