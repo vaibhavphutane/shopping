@@ -24,7 +24,10 @@ export class ShoppingCartService {
      let cartId=  await this.getOrCreateCartId()
     return this.db.object('/shopping-carts/' +cartId).map(x=>new shoppingCart(x.items))
    }
-   
+   async clearCart(){
+     let cartId = await this.getOrCreateCartId();
+     this.db.object('/shopping-carts/'+cartId+'/items').remove();
+   }
    private async getOrCreateCartId():Promise<string>{
     let cartId=localStorage.getItem('cartId');
     if(cartId)
@@ -41,11 +44,18 @@ export class ShoppingCartService {
   async updateQuantity(product:Product,change:number){
      let cartId= await this.getOrCreateCartId();
      let item$ = this.getItem(cartId,product.$key);
+     
      item$.take(1).subscribe(item=>{
-       if(item.$exists())
-       item$.update({quantity:item.quantity + change})
+       let quantity=(item.quantity || 0) + change
+       if(quantity==0)
+       item$.remove();
        else
-       item$.set({product:product,quantity:1})
+         item$.update({
+          title:product.title,
+          imageUrl:product.imageUrl,
+          price:product.price,
+          quantity:quantity
+        })
      });
 
    }

@@ -20,15 +20,6 @@ export class ProductCardComponent {
    this.cartService.updateQuantity(this.product,1);
   }
 
-  removeFromCart(){
-    this.cartService.updateQuantity(this.product,-1);
-  }
-
-  getQuantity(){
-    if(!this.shoppingCart)
-    return 0;
-    let item=this.shoppingCart.items[this.product.$key];
-    return item?item.quantity:0;
-  }
+   
 
 }
