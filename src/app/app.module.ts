@@ -30,6 +30,7 @@ import { ProductFilterComponent } from './product/product-filter/product-filter.
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import {OrderService}  from './order.service';
 
 const APP_ROUTES: Routes = [
   {path: '', component: ProductComponent },
@@ -38,7 +39,7 @@ const APP_ROUTES: Routes = [
   {path: 'login',component: LoginComponent},
   
   {path: 'check-out',component: CheckOutComponent,canActivate:[AuthguardService]},
-  {path: 'order-success',component: OrderSuccessComponent,canActivate:[AuthguardService]},
+  {path: 'order-success/:id',component: OrderSuccessComponent,canActivate:[AuthguardService]},
   {path: 'my-orders',component: MyOrdersComponent,canActivate:[AuthguardService]},
   
   {
@@ -97,7 +98,8 @@ const APP_ROUTES: Routes = [
    AdminAuthGuardService,
    CategoryService,
    ProductsService,
-   ShoppingCartService
+   ShoppingCartService,
+   OrderService
   ],
   bootstrap: [AppComponent]
 })
