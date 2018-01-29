@@ -7,12 +7,14 @@ import { AppUser } from './models/app-user';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   username$:Observable<firebase.User>;
 
   constructor(
+    private router:Router,
     private userService:UserService,
     private afAuth:AngularFireAuth,
     private route:ActivatedRoute) {
@@ -24,6 +26,7 @@ export class AuthService {
     let returnUrl=this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    this.router.navigate(['/']);
   }
  
   logout(){

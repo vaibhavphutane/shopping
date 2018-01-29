@@ -4,6 +4,7 @@ import { ProductsService } from '../../products.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
+import { Product } from '../../models/product';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -12,8 +13,8 @@ import 'rxjs/add/operator/take';
 export class ProductFormComponent implements OnInit {
  category$;
  id;
- product={};
-
+ //product={};
+product:Product;
 
   constructor(
     private route:ActivatedRoute,
